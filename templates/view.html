@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}View Employees & Departments{% endblock %}
+
+{% block content %}
+    <div class="header-container">
+        <h2>Employees</h2>
+        <a href="{{ url_for('create') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Create Employee
+        </a>
+    </div>
+
+    <!-- Employee Table -->
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
+                <th>Position</th>
+                <th>Salary (€)</th>
+                <th>Works From</th>
+                <th>Department ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.dob }}</td>
+                <td>{{ employee.position }}</td>
+                <td>{{ employee.salary }}</td>
+                <td>{{ employee.works_from }}</td>
+                <td>{{ employee.department_id }}</td>
+                <td>
+                    <a href="{{ url_for('update', employee_id=employee.id) }}" class="action-icon">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{{ url_for('delete_emp', employee_id=employee.id) }}" class="action-icon danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Departments</h2>
+
+    <!-- Move the "Create Department" button to the right -->
+    <div class="header-container">
+        <a href="{{ url_for('create_department') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Create Department
+        </a>
+    </div>
+
+    <!-- Department Table -->
+    <table class="department-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for department in departments %}
+            <tr>
+                <td>{{ department.id }}</td>
+                <td>{{ department.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

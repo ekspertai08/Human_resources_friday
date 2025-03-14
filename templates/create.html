@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Employee{% endblock %}
+
+{% block content %}
+    <h2>Create Employee</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <label for="name">Name</label>
+        {{ form.name(class="form-input") }}
+        {{ form.errors.name[0] if form.errors.name else '' }}
+
+        <label for="last_name">Last Name</label>
+        {{ form.last_name(class="form-input") }}
+        {{ form.errors.last_name[0] if form.errors.last_name else '' }}
+
+        <label for="dob">Date of Birth</label>
+        {{ form.dob(class="form-input") }}
+        {{ form.errors.dob[0] if form.errors.dob else '' }}
+
+        <label for="position">Position</label>
+        {{ form.position(class="form-input") }}
+        {{ form.errors.position[0] if form.errors.position else '' }}
+
+        <label for="salary">Salary (€)</label>
+        {{ form.salary(class="form-input", min="0") }}
+        {{ form.errors.salary[0] if form.errors.salary else '' }}
+
+        <label for="department_id">Department</label>
+        {{ form.department_id(class="form-input") }}
+        {{ form.errors.department_id[0] if form.errors.department_id else '' }}
+
+        <button type="submit" class="btn btn-primary">Create</button>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}  
+        {% if messages %}    
+        {% for category, message in messages %}      
+        <div class="alert alert-{{ category }} flash-message">
+            {{ message }}
+        </div>
+        {% endfor %}  
+        {% endif %}{% endwith %}
+    </form>
+{% endblock %}

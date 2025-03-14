@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Employee{% endblock %}
+
+{% block content %}
+    <h2>Update Employee</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <label for="position">Position</label>
+        {{ form.position(class="form-input") }}
+
+        <label for="salary">Salary (€)</label>
+        {{ form.salary(class="form-input", min="1") }}
+
+        <label for="department_id">Department</label>
+        {{ form.department_id(class="form-input") }}
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+{% endblock %}
