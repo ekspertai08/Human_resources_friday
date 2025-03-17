@@ -8,7 +8,7 @@ import services.department_actions as ser_dep
 from services.extension import db 
 
 app = Flask(__name__, static_folder='statics')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Mantas:Mantas123@localhost/flask_HR'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:PhQfXWYyrjFIAZPyvwIKKIcQXaEyrmFA@ballast.proxy.rlwy.net:45738/railway'
 app.config['SECRET_KEY'] = '123'
 db.init_app(app)
 migrate = Migrate(app, db)
@@ -75,4 +75,4 @@ def create_department():
     return render_template('create_department.html', form=form)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
